@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :admins
-    devise_scope :admin do
-     root 'devise/sessions#new'
-    end
-  
+  root 'products#index'
   resources :products do
     collection { post :import }
   end
@@ -62,4 +59,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  match '*path', :to => 'application#render_404', via: :get
 end
